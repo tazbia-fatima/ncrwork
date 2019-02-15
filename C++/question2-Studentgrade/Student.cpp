@@ -22,6 +22,7 @@ public:
 		float avg;
 		avg = (marks[0] + marks[1] + marks[2]) / 3;
 		//cout << "Average is:" << avg << endl;
+		cout << "Avg is :" << avg;
 		return avg;
 	}
 	void ComputeGrade(float avg) {
@@ -36,6 +37,7 @@ public:
 		}
 		else
 			grade = "Fail";
+		cout << "Grade is:" << grade;
 	}
 	void display() {
 		cout << "Student Details :" << endl;
@@ -49,45 +51,50 @@ int main() {
 	float avg;
 	int marks[3];
 	char grade1[100];
-	//To hard code values
+	/*cout << "With hard coded values";
 	marks[0]=50;
 	marks[1] = 33;
 	marks[2] = 99;
 	s1.set_Data("Tazbia Fatima", "Uncomputed", marks);
 	avg=s1.calculateAverage();
 	s1.ComputeGrade(avg);
-	s1.display();
-	/*TO take values from user
+	s1.display();*/
+	//TO take values from user
 	char sname[100];
-	int x;
+	int x,y;
 	cout << "Menu:" << endl << "1)Set Data\n2)Calculate Average\n3)ComputeGrade\n4)Display";
-	cin >> x;
-	switch (x)
-	{
-	case 1: {
-		cout << "Enter details-name,grade,marks[3]\n";
-		cin >> sname;
-		cin >> grade1;
-		cin >> marks[0];
-		cin >> marks[1];
-		cin >> marks[2]; //sname and grade are char *
-		s1.set_Data(sname, grade1, marks);
-		s1.display();
-		break;
-	}
-	case 2: {
-		avg = s1.calculateAverage();
-		break; }
-	case 3: {
-		avg = s1.calculateAverage();
-		s1.ComputeGrade(avg);
-		break; }
-	case 4: {
-		s1.display();
-		break; }
-	default: {cout << "Enter valid choice";
-		break; }
-	}*/
+	do {
+		cout << "\nEnter option";
+		cin >> x;
+		switch (x)
+		{
+		case 1: {
+			cout << "Enter details-name,grade,marks[3]\n";
+			cin >> sname;
+			cin >> grade1;
+			cin >> marks[0];
+			cin >> marks[1];
+			cin >> marks[2]; //sname and grade are char *
+			s1.set_Data(sname, grade1, marks);
+			s1.display();
+			break;
+		}
+		case 2: {
+			avg = s1.calculateAverage();
+			break; }
+		case 3: {
+			avg = s1.calculateAverage();
+			s1.ComputeGrade(avg);
+			break; }
+		case 4: {
+			s1.display();
+			break; }
+		default: {cout << "Enter valid choice";
+			break; }
+		}
+		cout<<"\nEnter 0 to select another option";
+		cin >> y;
+	} while (y == 0);
 			cin >> avg;
 			return 0;
 }
