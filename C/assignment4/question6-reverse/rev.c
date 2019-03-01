@@ -5,7 +5,7 @@ void rev(char *);
 int main() {
 	char *str = NULL;
 	int l;
-	str = (char *)malloc(50 * sizeof(char));
+	str = (char *)malloc(5 * sizeof(char));
 	printf("Enter the string\n");
 	scanf("%[^\n]s", str);
 	//l = strlen(str);

@@ -5,8 +5,6 @@ extern int add(int a, int b);
 extern int sub(int a, int b);
 extern int mul(int a, int b);
 extern int divi(int x, int y);
-
-
 void main()
 {
 	int a = 0, b = 0,x=0, res=0; 

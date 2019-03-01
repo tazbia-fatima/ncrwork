@@ -20,7 +20,7 @@ void main()
 
 	for (i = 0; i < n; i++)
 	{
-		printf("%s", arr[i]);
+		printf("%s\t", arr[i]);
 
 	}
 	scanf("%d", &i);
