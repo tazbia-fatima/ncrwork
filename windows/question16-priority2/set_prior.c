@@ -16,7 +16,7 @@ int _tmain(int argc, TCHAR *argv[], TCHAR *env[]) {
 		getchar();
 		return FALSE;
 	}
-	hThread1 = CreateThread(NULL, 0, thread_func, NULL, 0, &dwThreadID);
+	hThread1 = CreateThread(NULL, 0, thread_func, NULL, THREAD_PRIORITY_LOWEST, &dwThreadID);
 	if (NULL == hThread1) {
 		_tprintf("Error no %d",GetLastError());
 	}
