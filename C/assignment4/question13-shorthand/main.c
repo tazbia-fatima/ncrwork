@@ -5,7 +5,7 @@
 #define SIZEE 10000
 char* expand(char *, char *);
 int main() {
-	char *arr_str,*s1,*s2;
+	char *arr_str,*resultant_arr;
 	int length=0,flag=0,i=0;
 	arr_str = (char *)malloc(sizeof(char) * SIZEE);
 	printf("Enter your string s1\n");
@@ -21,52 +21,64 @@ int main() {
 		length++;
 		i++;
 	}while (arr_str[i] != '\0');
+	printf("\nThe  string is %s", arr_str);
 	length = strlen(arr_str);
-	//printf("%d", length);
+	printf("\nThe  string is %s", arr_str);
+	printf("%d", length);
 	if (0 == flag) {
-		s2 = (char*)malloc(sizeof(char)*length);
-		s2=expand(arr_str, s2);
-		printf("\nThe expanded string is %s", s2);
+		resultant_arr = (char*)malloc(sizeof(char)*length);
+		resultant_arr=expand(arr_str, resultant_arr);
+		printf("\nThe expanded string is %s", resultant_arr);
+		free(arr_str);
+		free(resultant_arr);
 		getchar();
 		return 0;
 	}
+	free(arr_str);
+	free(resultant_arr);
 	getchar();
 	return -1;
 }
-char* expand(char *s1, char *s2) {
+char* expand(char *orig_arr, char *resultant) {
 	//printf("\nIn expand");
 	char low_lim, up_lim;
 	int j=0;
-	for (int i = 0, j=0; s1[i]!='\0'; j++,i++) {
-		//printf("\nin for");
-		if ((s1[i] == '-')&&(s1[i+1]!='-')) {
-			//printf("\nin if");
-			low_lim = s1[i - 1];
-			up_lim = s1[i + 1];
-			//printf("\n%c and %c", low_lim, up_lim);
+	for (int i = 0, j=0; orig_arr[i]!='\0'; j++,i++) {
+		printf("\nin for");
+		if ((orig_arr[i] == '-')&&(orig_arr[i+1]!='-')) {
+			printf("\nin if");
+			low_lim = orig_arr[i - 1];
+			up_lim = orig_arr[i + 1];
+			printf("\n%c and %c", low_lim, up_lim);
 			if (up_lim < low_lim) {
 				printf("Invalid shorthand"); //example h-a
 				getchar();
-				free(s2);
+				free(resultant);
 			}
 			int diff = (int)up_lim - (int)low_lim -1;
-			//printf("%d", diff);
-			s2 = (char*)realloc(s2, sizeof(char)*(diff));
+			printf("%d", diff);
+			resultant = (char*)realloc(resultant, sizeof(char)*(diff));
 			char c = low_lim;
 			for ( int k=0; k<diff; k++) {		
 				c = c + 1;
-				s2[j] = c;
+				printf("\nvalue of c %c", c);
+				resultant[j] = c;
+				printf("\nvalue of s2 %c", resultant[j]);
 				j++;
 				//ll++;
 			}
 			
-			//printf("\n j value is %d", j);
+			printf("\n j value is %d", j);
 			i++; //toskipthehyphen
 			//continue;
 		}
-		//printf("\n j value is %d", j);
-		s2[j] = s1[i];
+		printf("\n j value is %d", j);
+		printf("\nvalue of s1 %c", orig_arr[i]);
+		
+		resultant[j] = orig_arr[i];
+		printf("\nvalue of s2 %c", resultant[j]);
 	}
+	printf("\nThe expanded string is %s", resultant);
 	getchar();
-	return s2;
+	return resultant;
 }
