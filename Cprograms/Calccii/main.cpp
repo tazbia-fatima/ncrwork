@@ -100,97 +100,97 @@ int Precedence(char x)
 	else
 		return 1;
 }
-//class _StackInt_
-//{
-//	struct sta
-//	{
-//		int top;
-//		int *elements;
-//		int size;
-//	}stack;
-//public:
-//	_StackInt_()
-//	{
-//	}
-//	_StackInt_(int size)
-//	{
-//		stack.size = size;
-//		stack.elements = new int[size];
-//		stack.top = -1;
-//	}
-//	bool isEmpty()
-//	{
-//		if (stack.top == -1)
-//			return true;
-//		return false;
-//	}
-//	bool isFull()
-//	{
-//		if (stack.top == stack.size - 1)
-//		{
-//			return true;
-//		}
-//		return false;
-//	}
-//	void Push(int x)
-//	{
-//		if (stack.top == stack.size - 1)
-//		{
-//			cout << "Stack Full";
-//			return;
-//		}
-//		else
-//		{
-//			stack.elements[++stack.top] = x;
-//		}
-//	}
-//	int Pop()
-//	{
-//		int x = -999;
-//		if (stack.top == -1)
-//		{
-//			cout << "Stack Empty";
-//			return x;
-//		}
-//		else
-//		{
-//			x = stack.elements[stack.top--];
-//			return x;
-//		}
-//	}
-//	int Peek()
-//	{
-//		int x = -999;
-//		if (stack.top == -1)
-//		{
-//			cout << "Stack Empty";
-//			return x;
-//		}
-//		else
-//		{
-//			x = stack.elements[stack.top];
-//			return x;
-//		}
-//	}
-//	void Display()
-//	{
-//		for (int i = 0; i <= stack.top; i++)
-//		{
-//			cout << stack.elements[i] << endl;
-//		}
-//	}
-//	/*void GetSize(int size)
-//	{
-//	stack.size = size;
-//	}*/
-//	~_StackInt_()
-//	{
-//		delete (stack.elements);
-//	}
-//};
+class _StackInt_
+{
+	struct sta
+	{
+		int top;
+		int *elements;
+		int size;
+	}stack;
+public:
+	_StackInt_()
+	{
+	}
+	_StackInt_(int size)
+	{
+		stack.size = size;
+		stack.elements = new int[size];
+		stack.top = -1;
+	}
+	bool isEmpty()
+	{
+		if (stack.top == -1)
+			return true;
+		return false;
+	}
+	bool isFull()
+	{
+		if (stack.top == stack.size - 1)
+		{
+			return true;
+		}
+		return false;
+	}
+	void Push(int x)
+	{
+		if (stack.top == stack.size - 1)
+		{
+			cout << "Stack Full";
+			return;
+		}
+		else
+		{
+			stack.elements[++stack.top] = x;
+		}
+	}
+	int Pop()
+	{
+		int x = -999;
+		if (stack.top == -1)
+		{
+			cout << "Stack Empty";
+			return x;
+		}
+		else
+		{
+			x = stack.elements[stack.top--];
+			return x;
+		}
+	}
+	int Peek()
+	{
+		int x = -999;
+		if (stack.top == -1)
+		{
+			cout << "Stack Empty";
+			return x;
+		}
+		else
+		{
+			x = stack.elements[stack.top];
+			return x;
+		}
+	}
+	void Display()
+	{
+		for (int i = 0; i <= stack.top; i++)
+		{
+			cout << stack.elements[i] << endl;
+		}
+	}
+	/*void GetSize(int size)
+	{
+	stack.size = size;
+	}*/
+	~_StackInt_()
+	{
+		delete (stack.elements);
+	}
+};
 int main()
 {
-	char input_string[SIZE];
+	char input_string[SIZE]; //USEINTEGERARRAY and check for ascii values for a-i and double digits?
 	cout << "Enter the string";
 	cin >> input_string;
 	char result[SIZE];
@@ -203,6 +203,7 @@ int main()
 		ch = input_string[i];
 		if (isdigit(ch) || isalpha(ch))
 		{
+			//cout << ch;
 			result[k++] = ch;
 		}
 		else if (ch == '$' || ch == '_' || ch == '#' || ch == '@' || ch == '!') {
@@ -218,7 +219,7 @@ int main()
 		{
 			while (s.Peek() != '(')
 			{
-				//cout<<"3 - "<<ch<<"\n";
+				cout<<"3 - "<<ch<<"\n";
 				result[k++] = s.Pop();
 			}
 			s.Pop();
@@ -250,34 +251,34 @@ int main()
 		result[k++] = s.Pop();
 	}
 	result[k] = '\0';
-	cout << "String - " << result << endl;
-	//_StackInt_ s1(10);
+	//cout << "String - " << result << endl;
+	_StackInt_ s1(10);
 	for (int i = 0; i < strlen(result); i++)
 	{
 		char ch;
 		ch = result[i];
-		if (isdigit(ch) && !s.isFull())
+		if (isdigit(ch) && !s1.isFull())
 		{
-			s.Push(ch - '0');
+			s1.Push(ch - '0');
 		}
 		else
 		{
-			int a = s.Pop();
-			int b = s.Pop();
+			int a = s1.Pop();
+			int b = s1.Pop();
 			switch (ch)
 			{
-			case '+': s.Push(addi(a, b));
+			case '+': s1.Push(addi(a, b));
 				break;
-			case '-': s.Push(subb(b, a));
+			case '-': s1.Push(subb(b, a));
 				break;
-			case '*': s.Push(multi(b, a));
+			case '*': s1.Push(multi(b, a));
 				break;
-			case '/': s.Push(divvi(b, a));
+			case '/': s1.Push(divvi(b, a));
 				break;
 			}
 		}
 	}
-	cout << "Result - " << s.Pop();
+	cout << "Result - " << s1.Pop();
 	system("pause");
 	return 0;
 }
